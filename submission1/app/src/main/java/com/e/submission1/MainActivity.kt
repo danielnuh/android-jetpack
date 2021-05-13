@@ -1,4 +1,4 @@
-package com.e.session3academy
+package com.e.submission1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
