@@ -2,6 +2,7 @@ package com.e.submission1.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.e.submission1.R
 import com.e.submission1.data.MovieEntity
 import com.e.submission1.data.TvShowEntity
@@ -21,23 +22,32 @@ class DetailActivity : AppCompatActivity() {
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+
+
         if(intent.getParcelableExtra<MovieEntity>(EXTRA_MOVIE)!=null){
             val data = intent.getParcelableExtra<MovieEntity>(EXTRA_MOVIE)
 
             if (data != null) {
-                binding.title.text = data.title
-                binding.date.text = SimpleDateFormat("dd MMMM yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(data.date)).toString()
-                binding.image.setImageResource(data.image)
-                binding.description.text = data.description
+                viewModel.setMovie(data)
+                val temp = viewModel.getMovie()
+
+                binding.title.text = temp.title
+                binding.date.text = SimpleDateFormat("dd MMMM yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(temp.date)).toString()
+                binding.image.setImageResource(temp.image)
+                binding.description.text = temp.description
             }
         }else{
             val data = intent.getParcelableExtra<TvShowEntity>(EXTRA_TV_SHOW)
 
             if (data != null) {
-                binding.title.text = data.title
-                binding.date.text = SimpleDateFormat("dd MMMM yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(data.date)).toString()
-                binding.image.setImageResource(data.image)
-                binding.description.text = data.description
+                viewModel.setTvShow(data)
+                val temp = viewModel.getTvShow()
+
+                binding.title.text = temp.title
+                binding.date.text = SimpleDateFormat("dd MMMM yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(temp.date)).toString()
+                binding.image.setImageResource(temp.image)
+                binding.description.text = temp.description
             }
         }
 

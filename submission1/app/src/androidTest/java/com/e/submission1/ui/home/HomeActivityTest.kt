@@ -26,7 +26,7 @@ class HomeActivityTest{
         onView(withId(R.id.rv_movie))
             .check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie))
-            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovies.size))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovies.size-1))
 
     }
 
@@ -36,7 +36,7 @@ class HomeActivityTest{
         onView(withId(R.id.rv_tvshow))
             .check(matches(isDisplayed()))
         onView(withId(R.id.rv_tvshow))
-            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size))
+            .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size-1))
     }
 
     @Test
