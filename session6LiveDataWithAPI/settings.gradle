@@ -1,0 +1,2 @@
+rootProject.name = "session6LiveDataWithAPI"
+include ':app'
