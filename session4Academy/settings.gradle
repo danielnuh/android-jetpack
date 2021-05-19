@@ -1,0 +1,2 @@
+rootProject.name = "session3Academy"
+include ':app'
