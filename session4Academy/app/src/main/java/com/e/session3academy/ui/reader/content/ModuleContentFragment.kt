@@ -10,6 +10,7 @@ import com.e.session3academy.data.ContentEntity
 import com.e.session3academy.data.ModuleEntity
 import com.e.session3academy.databinding.FragmentModuleContentBinding
 import com.e.session3academy.ui.reader.CourseReaderViewModel
+import com.e.session3academy.viewModel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
     companion object{
@@ -27,7 +28,7 @@ class ModuleContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(activity != null){
-            val viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val viewModel = ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity()))[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
             populateWebView(module)
         }

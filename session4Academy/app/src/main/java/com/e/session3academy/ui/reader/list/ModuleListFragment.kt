@@ -15,6 +15,7 @@ import com.e.session3academy.ui.reader.CourseReaderActivity
 import com.e.session3academy.ui.reader.CourseReaderCallback
 import com.e.session3academy.ui.reader.CourseReaderViewModel
 import com.e.session3academy.utils.DataDummy
+import com.e.session3academy.viewModel.ViewModelFactory
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
@@ -42,7 +43,7 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity(),ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity()))[CourseReaderViewModel::class.java]
 
         adapter = ModuleListAdapter(this)
         populateRecyclerView(viewModel.getModules())

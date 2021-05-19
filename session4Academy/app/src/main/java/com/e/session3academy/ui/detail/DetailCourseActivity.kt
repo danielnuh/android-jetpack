@@ -15,6 +15,7 @@ import com.e.session3academy.databinding.ActivityDetailCourseBinding
 import com.e.session3academy.databinding.ContentDetailCourseBinding
 import com.e.session3academy.ui.reader.CourseReaderActivity
 import com.e.session3academy.utils.DataDummy
+import com.e.session3academy.viewModel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
     companion object {
@@ -27,7 +28,7 @@ class DetailCourseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_course)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[DetailCourseViewModel::class.java]
 
         val activityDetailCourseBinding = ActivityDetailCourseBinding.inflate(layoutInflater)
         detailContentBinding = activityDetailCourseBinding.detailContent

@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.e.session3academy.R
 import com.e.session3academy.databinding.FragmentAcademyBinding
-import com.e.session3academy.utils.DataDummy
+import com.e.session3academy.viewModel.ViewModelFactory
 
 class AcademyFragment : Fragment() {
 
@@ -25,7 +24,9 @@ class AcademyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity!=null){
-            val viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[AcademyViewModel::class.java]
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this,factory)[AcademyViewModel::class.java]
             val course = viewModel.getCourses()
             
             val academyAdapter = AcademyAdapter()
