@@ -1,43 +1,23 @@
 package com.e.submission1.ui.detail
 
+import android.content.Intent
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.e.submission1.data.MovieEntity
 import com.e.submission1.data.TvShowEntity
-import com.e.submission1.utils.DataDummy
+import com.e.submission1.utils.SingleLiveEvent
+import com.e.submission1.viewModel.Repository
 
-class DetailViewModel: ViewModel() {
-    private lateinit var movieEntityTemp: MovieEntity
-    private lateinit var tvShowEntityTemp: TvShowEntity
+class DetailViewModel(private val repository: Repository, ) : ViewModel() {
+    var state: SingleLiveEvent<DetailState> = SingleLiveEvent()
 
-    fun setMovie(movieEntity: MovieEntity){
-        movieEntityTemp = movieEntity
-    }
+    fun getDetailMovie(id: String): LiveData<MovieEntity> = repository.getDetailMovie(id, state)
+    fun getDetailTvShow(id: String): LiveData<TvShowEntity> = repository.getDetailTvShow(id, state)
 
-    fun setTvShow(tvShowEntity: TvShowEntity){
-        tvShowEntityTemp = tvShowEntity
-    }
+}
 
-    fun getMovie():MovieEntity{
-        lateinit var movieEntity:MovieEntity
-
-        for (item in DataDummy.generatedDummyMovie()){
-            if (item.id == movieEntityTemp.id){
-                movieEntity = item
-            }
-        }
-
-        return movieEntity
-    }
-
-    fun getTvShow():TvShowEntity{
-        lateinit var tvShowEntity: TvShowEntity
-
-        for (item in DataDummy.generatedDummyTvShow()){
-            if (item.id == tvShowEntityTemp.id){
-                tvShowEntity = item
-            }
-        }
-
-        return tvShowEntity
-    }
+sealed class DetailState{
+    data class OnMassage(val message: String) : DetailState()
+    data class OnLoading(val boolean: Boolean) : DetailState()
+    data class OnShowData(val boolean: Boolean) : DetailState()
 }

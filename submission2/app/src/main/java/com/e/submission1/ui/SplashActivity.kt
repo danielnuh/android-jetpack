@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
 
-        Handler(Looper.getMainLooper()).postDelayed({
+        Handler(mainLooper).postDelayed({
             startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }, 1000)

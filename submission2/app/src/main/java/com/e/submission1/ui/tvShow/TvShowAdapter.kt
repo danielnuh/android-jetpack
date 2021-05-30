@@ -4,10 +4,15 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.e.submission1.R
 import com.e.submission1.data.TvShowEntity
 import com.e.submission1.databinding.ItemsTvshowBinding
 import com.e.submission1.ui.detail.DetailActivity
+import com.e.submission1.utils.Helper
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TvShowAdapter:RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
 
@@ -32,8 +37,14 @@ class TvShowAdapter:RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
         fun bind(tvShow :TvShowEntity){
             with(binding){
                 title.text = tvShow.title
-                date.text = SimpleDateFormat("dd MMMM yyyy").format(SimpleDateFormat("MM/dd/yyyy").parse(tvShow.date)).toString()
-                image.setImageResource(tvShow.image)
+                date.text = Helper.formatDate(tvShow.date)
+
+                Glide.with(itemView.context)
+                    .load(tvShow.image)
+                    .placeholder(Helper.shimmerImage())
+                    .error(R.drawable.ic_image_broken)
+                    .into(image)
+
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_TV_SHOW, tvShow)

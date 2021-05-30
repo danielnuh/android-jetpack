@@ -9,5 +9,5 @@ class TvShowEntity(
     var title : String,
     var description : String,
     var date: String,
-    var image : Int,
+    var image : String,
 ):Parcelable
