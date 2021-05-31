@@ -2,6 +2,8 @@ package com.e.session3academy.data.source.remote
 
 import android.os.Handler
 import android.os.Looper
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.e.session3academy.data.source.remote.response.ContentResponse
 import com.e.session3academy.data.source.remote.response.CourseResponse
 import com.e.session3academy.data.source.remote.response.ModuleResponse
@@ -22,28 +24,40 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
         }
     }
 
-    fun getAllCourses(callback: LoadCoursesCallback) {
+    fun getAllCourses(): LiveData<ApiResponse<List<CourseResponse>>> {
         EspressoIdlingResource.increment()
+        val resultCourse = MutableLiveData<ApiResponse<List<CourseResponse>>>()
         handler.postDelayed({
-            callback.onAllCoursesReceived(jsonHelper.loadCourses())
+            resultCourse.value = ApiResponse.success(jsonHelper.loadCourses())
             EspressoIdlingResource.decrement()
         }, SERVICE_LATENCY_IN_MILLIS)
+
+        return resultCourse
     }
 
-    fun getModules(courseId: String, callback: LoadModulesCallback) {
+    fun getModules(courseId: String):LiveData<ApiResponse<List<ModuleResponse>>> {
         EspressoIdlingResource.increment()
+        val result = MutableLiveData<ApiResponse<List<ModuleResponse>>>()
         handler.postDelayed({
-            callback.onAllModulesReceived(jsonHelper.loadModule(courseId))
+            result.value = ApiResponse.success(jsonHelper.loadModule(courseId))
             EspressoIdlingResource.decrement()
         }, SERVICE_LATENCY_IN_MILLIS)
+
+        return result
     }
 
-    fun getContent(moduleId: String, callback: LoadContentCallback) {
+    fun getContent(moduleId: String):LiveData<ApiResponse<ContentResponse>> {
         EspressoIdlingResource.increment()
+
+        val result = MutableLiveData<ApiResponse<ContentResponse>>()
+
         handler.postDelayed({
-            callback.onContentReceived(jsonHelper.loadContent(moduleId))
+            result.value = ApiResponse.success(jsonHelper.loadContent(moduleId))
+
             EspressoIdlingResource.decrement()
         }, SERVICE_LATENCY_IN_MILLIS)
+
+        return result
     }
 
 

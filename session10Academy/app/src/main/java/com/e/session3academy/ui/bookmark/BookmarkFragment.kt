@@ -9,7 +9,7 @@ import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.e.session3academy.R
-import com.e.session3academy.data.CourseEntity
+import com.e.session3academy.data.source.local.entity.CourseEntity
 import com.e.session3academy.databinding.FragmentBookmarkBinding
 import com.e.session3academy.viewModel.ViewModelFactory
 

@@ -1,4 +1,4 @@
-package com.e.session3academy
+package com.e.session9mynoteapps
 
 import org.junit.Test
 

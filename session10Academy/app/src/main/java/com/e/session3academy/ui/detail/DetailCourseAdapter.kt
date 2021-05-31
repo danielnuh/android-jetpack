@@ -3,7 +3,7 @@ package com.e.session3academy.ui.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.e.session3academy.data.ModuleEntity
+import com.e.session3academy.data.source.local.entity.ModuleEntity
 import com.e.session3academy.databinding.ItemsModuleListBinding
 
 class DetailCourseAdapter: RecyclerView.Adapter<DetailCourseAdapter.ModuleViewHolder>()  {

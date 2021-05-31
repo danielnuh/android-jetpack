@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.e.session3academy.R
-import com.e.session3academy.data.CourseEntity
+import com.e.session3academy.data.source.local.entity.CourseEntity
 import com.e.session3academy.databinding.ItemsAcademyBinding
 import com.e.session3academy.ui.detail.DetailCourseActivity
 

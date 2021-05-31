@@ -3,9 +3,9 @@ package com.e.session3academy.ui.bookmark
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.e.session3academy.data.CourseEntity
+import com.e.session3academy.data.source.local.entity.CourseEntity
 import com.e.session3academy.utils.DataDummy
-import com.e.session3academy.viewModel.AcademyRepository
+import com.e.session3academy.data.source.AcademyRepository
 import junit.framework.TestCase.assertNotNull
 import org.junit.Assert.assertEquals
 import org.junit.Before

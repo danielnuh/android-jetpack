@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.e.session3academy.R
-import com.e.session3academy.data.CourseEntity
+import com.e.session3academy.data.source.local.entity.CourseEntity
 import com.e.session3academy.databinding.ItemsBookmarkBinding
 import com.e.session3academy.ui.detail.DetailCourseActivity
 
@@ -33,7 +33,7 @@ class BookmarkAdapter(private var callback: BookmarkFragmentCallback):RecyclerVi
     override fun getItemCount(): Int = listCourses.size
 
     inner class CourseViewHolder(private val binding:ItemsBookmarkBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(course:CourseEntity){
+        fun bind(course: CourseEntity){
             with(binding){
                 tvItemTitle.text = course.title
                 tvItemDate.text = itemView.resources.getString(R.string.deadline_date, course.deadline)
