@@ -2,6 +2,7 @@ package com.e.session9mynoteapps.database
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -14,7 +15,9 @@ class NoteRepository(application: Application) {
         mNotesDao = db.noteDao()
     }
 
-    fun getAllNotes(): LiveData<List<Note>> = mNotesDao.getAllNotes()
+    fun getAllNotes(): DataSource.Factory<Int, Note>{
+        return mNotesDao.getAllNotes()
+    }
     fun insert(note: Note) {
         executorService.execute { mNotesDao.insert(note) }
     }
