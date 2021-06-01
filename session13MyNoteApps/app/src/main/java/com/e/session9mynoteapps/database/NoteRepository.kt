@@ -3,6 +3,7 @@ package com.e.session9mynoteapps.database
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
+import com.e.session9mynoteapps.helper.SortUtils
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -15,9 +16,11 @@ class NoteRepository(application: Application) {
         mNotesDao = db.noteDao()
     }
 
-    fun getAllNotes(): DataSource.Factory<Int, Note>{
-        return mNotesDao.getAllNotes()
+    fun getAllNotes(sort: String): DataSource.Factory<Int, Note> {
+        val query = SortUtils.getSortedQuery(sort)
+        return mNotesDao.getAllNotes(query)
     }
+
     fun insert(note: Note) {
         executorService.execute { mNotesDao.insert(note) }
     }
