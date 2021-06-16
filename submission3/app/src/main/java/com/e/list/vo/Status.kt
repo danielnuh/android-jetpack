@@ -1,4 +1,4 @@
-package com.e.session3academy.vo
+package com.e.list.vo
 
 enum class Status {
     SUCCESS,

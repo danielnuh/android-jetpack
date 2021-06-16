@@ -1,4 +1,4 @@
-package com.e.session3academy.vo
+package com.e.list.vo
 
 data class Resource<T>(val status: Status, val data: T?, val message: String?) {
     companion object {
